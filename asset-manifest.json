@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/BaekmaEdu/static/css/main.18edad2e.css",
-    "main.js": "/BaekmaEdu/static/js/main.0f877f47.js",
+    "main.js": "/BaekmaEdu/static/js/main.a2fc50d7.js",
     "index.html": "/BaekmaEdu/index.html",
     "main.18edad2e.css.map": "/BaekmaEdu/static/css/main.18edad2e.css.map",
-    "main.0f877f47.js.map": "/BaekmaEdu/static/js/main.0f877f47.js.map"
+    "main.a2fc50d7.js.map": "/BaekmaEdu/static/js/main.a2fc50d7.js.map"
   },
   "entrypoints": [
     "static/css/main.18edad2e.css",
-    "static/js/main.0f877f47.js"
+    "static/js/main.a2fc50d7.js"
   ]
 }
