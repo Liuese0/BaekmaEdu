@@ -128,42 +128,8 @@ const EducationalGuidanceTool = () => {
       weight: 5, // 가장 중요한 요소 중 하나
       category: 'interest'
     },
-    {
-      id: 'secondaryInterest',
-      question: '두 번째로 관심 있는 학문 분야가 있다면 무엇인가요?',
-      options: [
-        { value: 'none', text: '특별히 없음' },
-        { value: 'humanities', text: '인문학(문학, 역사, 철학 등)' },
-        { value: 'socialSciences', text: '사회과학(정치, 경제, 사회, 심리학 등)' },
-        { value: 'naturalSciences', text: '자연과학(물리, 화학, 생물 등)' },
-        { value: 'engineering', text: '공학(컴퓨터, 기계, 전자 등)' },
-        { value: 'medical', text: '의학/약학/보건 분야' },
-        { value: 'education', text: '교육학 분야' },
-        { value: 'business', text: '경영/경제 분야' },
-        { value: 'arts', text: '예술(음악, 미술, 디자인 등)' },
-        { value: 'physical', text: '체육(스포츠과학, 건강 등)' }
-      ],
-      weight: 3,
-      category: 'interest'
-    },
-    {
-      id: 'careerValues',
-      question: '진로 선택에서 가장 중요하게 생각하는 가치는 무엇인가요? (최대 2개)',
-      options: [
-        { value: 'stability', text: '직업 안정성' },
-        { value: 'income', text: '높은 수입' },
-        { value: 'workLifeBalance', text: '일과 삶의 균형' },
-        { value: 'socialContribution', text: '사회 기여도' },
-        { value: 'selfGrowth', text: '자기 성장' },
-        { value: 'challenge', text: '도전과 혁신' },
-        { value: 'autonomy', text: '자율성과 독립성' },
-        { value: 'recognition', text: '인정과 명예' }
-      ],
-      multiSelect: true,
-      maxSelect: 2,
-      weight: 4,
-      category: 'interest'
-    },
+    
+
     {
       id: 'selectedSubjects',
       question: '현재 수강중이거나 수강 예정인 선택과목은 무엇인가요? (여러 개 선택 가능)',
@@ -198,32 +164,7 @@ const EducationalGuidanceTool = () => {
       weight: 4,
       category: 'academic'
     },
-    {
-      id: 'favoriteSubjects',
-      question: '가장 흥미롭게 공부하는 과목은 무엇인가요? (최대 3개)',
-      options: [
-        { value: 'korean', text: '국어' },
-        { value: 'math', text: '수학' },
-        { value: 'english', text: '영어' },
-        { value: 'physics', text: '물리' },
-        { value: 'chemistry', text: '화학' },
-        { value: 'biology', text: '생명과학' },
-        { value: 'earthScience', text: '지구과학' },
-        { value: 'history', text: '역사' },
-        { value: 'ethics', text: '윤리' },
-        { value: 'politics', text: '정치와 법' },
-        { value: 'economics', text: '경제' },
-        { value: 'society', text: '사회·문화' },
-        { value: 'programming', text: '프로그래밍/정보' },
-        { value: 'secondLanguage', text: '제2외국어' },
-        { value: 'arts', text: '음악/미술' },
-        { value: 'physical', text: '체육' }
-      ],
-      multiSelect: true,
-      maxSelect: 3,
-      weight: 4,
-      category: 'interest'
-    },
+
     {
       id: 'clubs',
       question: '참여하고 있는 동아리 활동은 무엇인가요? (최대 3개)',
@@ -265,19 +206,7 @@ const EducationalGuidanceTool = () => {
       weight: 2,
       category: 'activity'
     },
-    {
-      id: 'leadershipStyle',
-      question: '리더십이나 팀워크에서 본인의 성향은 어떤가요?',
-      options: [
-        { value: 'leader', text: '주도적으로 이끄는 것을 선호함' },
-        { value: 'supporter', text: '조력자 역할을 선호함' },
-        { value: 'specialist', text: '특정 분야의 전문가 역할을 선호함' },
-        { value: 'mediator', text: '조정과 중재 역할을 선호함' },
-        { value: 'independent', text: '독립적으로 일하는 것을 선호함' }
-      ],
-      weight: 2,
-      category: 'personality'
-    },
+
     {
       id: 'awards',
       question: '교내/외 수상 경력이 있나요?',
@@ -295,19 +224,7 @@ const EducationalGuidanceTool = () => {
       weight: 3,
       category: 'activity'
     },
-    {
-      id: 'awardDetails',
-      question: '가장 의미 있게 생각하는 수상 경력이 있다면 간략히 서술해주세요.',
-      type: 'text',
-      placeholder: '대회명, 수상 내역, 활동 내용 등을 간략히 작성해주세요.',
-      maxLength: 300,
-      weight: 2,
-      category: 'activity',
-      conditional: {
-        dependsOn: 'awards',
-        showIf: ['academicAwards', 'academicAwardsFew', 'competitionAwards', 'competitionAwardsFew', 'externalAwards', 'leadershipAwards']
-      }
-    },
+
     {
       id: 'specialActivities',
       question: '특별한 교과 외 활동이나 경험이 있나요? (최대 3개)',
@@ -330,19 +247,7 @@ const EducationalGuidanceTool = () => {
       weight: 3,
       category: 'activity'
     },
-    {
-      id: 'specialActivityDetails',
-      question: '가장 의미 있게 생각하는 교과 외 활동에 대해 간략히 서술해주세요.',
-      type: 'text',
-      placeholder: '활동명, 참여 기간, 역할, 배운 점 등을 간략히 작성해주세요.',
-      maxLength: 300,
-      weight: 2,
-      category: 'activity',
-      conditional: {
-        dependsOn: 'specialActivities',
-        showIf: ['researchProject', 'volunteerRegular', 'volunteerFew', 'internship', 'competition', 'campActivities', 'certificates', 'publications', 'overseas', 'sports', 'arts']
-      }
-    },
+
     {
       id: 'certificates',
       question: '취득한 자격증이 있다면 무엇인가요? (최대 3개)',
@@ -407,83 +312,10 @@ const EducationalGuidanceTool = () => {
       weight: 3,
       category: 'academic'
     },
-    {
-      id: 'studyHabits',
-      question: '주로 어떤 방식으로 공부하는 것을 선호하나요?',
-      options: [
-        { value: 'selfStudy', text: '혼자서 자율적으로 공부' },
-        { value: 'groupStudy', text: '친구들과 함께 스터디 그룹으로 공부' },
-        { value: 'tutoring', text: '개인 과외나 학원 수업을 통한 공부' },
-        { value: 'onlineLearning', text: '온라인 강의나 자료를 활용한 공부' },
-        { value: 'practicalLearning', text: '실습이나 체험을 통한 학습' }
-      ],
-      weight: 2,
-      category: 'personality'
-    },
-    {
-      id: 'personalityType',
-      question: '자신의 성격 유형은 어떻다고 생각하나요? (2개 선택)',
-      options: [
-        { value: 'analytical', text: '분석적/논리적' },
-        { value: 'creative', text: '창의적/예술적' },
-        { value: 'practical', text: '실용적/현실적' },
-        { value: 'social', text: '사교적/대인관계 중심적' },
-        { value: 'adventurous', text: '모험적/도전적' },
-        { value: 'organized', text: '체계적/계획적' },
-        { value: 'flexible', text: '유연한/적응력 있는' },
-        { value: 'cautious', text: '신중한/완벽주의적' }
-      ],
-      multiSelect: true,
-      maxSelect: 2,
-      weight: 3,
-      category: 'personality'
-    },
-    {
-      id: 'workEnvironment',
-      question: '선호하는 작업/근무 환경은 어떤 유형인가요?',
-      options: [
-        { value: 'outdoor', text: '야외/현장 위주' },
-        { value: 'office', text: '사무실/실내 환경' },
-        { value: 'laboratory', text: '연구실/실험실' },
-        { value: 'creative', text: '창작 스튜디오/예술 공간' },
-        { value: 'online', text: '온라인/디지털 환경' },
-        { value: 'mixed', text: '다양한 환경을 오가는 형태' }
-      ],
-      weight: 2,
-      category: 'interest'
-    },
-    {
-      id: 'admissionPreference',
-      question: '선호하는 대입 전형은 무엇인가요?',
-      options: [
-        { value: 'suneung', text: '정시 수능위주전형' },
-        { value: 'comprehensive', text: '수시 학생부종합전형' },
-        { value: 'subject', text: '수시 학생부교과전형' },
-        { value: 'specialTalent', text: '수시 실기/특기자전형' },
-        { value: 'social', text: '사회배려자/지역균형전형' },
-        { value: 'notSure', text: '아직 잘 모르겠음' }
-      ],
-      weight: 2,
-      category: 'academic'
-    },
-    {
-      id: 'universityPreference',
-      question: '대학 선택 시 가장 중요하게 생각하는 요소는 무엇인가요? (최대 2개)',
-      options: [
-        { value: 'reputation', text: '대학의 전체적인 명성/인지도' },
-        { value: 'majorReputation', text: '지원 학과의 전문성/평판' },
-        { value: 'location', text: '대학의 위치/지역' },
-        { value: 'facilities', text: '캠퍼스 환경/시설' },
-        { value: 'scholarship', text: '장학금/학비 지원' },
-        { value: 'curriculum', text: '교육과정/프로그램 내용' },
-        { value: 'career', text: '취업률/진로 지원' },
-        { value: 'network', text: '동문 네트워크/인맥 형성' }
-      ],
-      multiSelect: true,
-      maxSelect: 2,
-      weight: 2,
-      category: 'interest'
-    },
+
+    
+
+
     {
       id: 'majorInterest',
       question: '관심 있는 대학 전공은 무엇인가요? (최대 3개)',
@@ -550,57 +382,9 @@ const EducationalGuidanceTool = () => {
       weight: 4,
       category: 'interest'
     },
-    {
-      id: 'learningDifficulties',
-      question: '학습에 있어 어려움을 느끼는 부분이 있나요? (최대 2개)',
-      options: [
-        { value: 'memorization', text: '암기력/기억력' },
-        { value: 'calculation', text: '수리력/계산능력' },
-        { value: 'reading', text: '독해력/이해력' },
-        { value: 'writing', text: '글쓰기/표현력' },
-        { value: 'concentration', text: '집중력/주의력' },
-        { value: 'timeManagement', text: '시간관리/계획성' },
-        { value: 'testAnxiety', text: '시험 불안/스트레스' },
-        { value: 'motivation', text: '학습 동기/흥미 유지' },
-        { value: 'none', text: '특별한 어려움 없음' }
-      ],
-      multiSelect: true,
-      maxSelect: 2,
-      weight: 2,
-      category: 'personality'
-    },
-    {
-      id: 'parentOccupation',
-      question: '부모님의 직업 분야는 무엇인가요? (선택 항목)',
-      options: [
-        { value: 'education', text: '교육/학술 분야' },
-        { value: 'medical', text: '의료/보건 분야' },
-        { value: 'engineering', text: '공학/기술 분야' },
-        { value: 'business', text: '경영/금융 분야' },
-        { value: 'service', text: '서비스/판매 분야' },
-        { value: 'office', text: '사무/행정 분야' },
-        { value: 'government', text: '공무원/공공기관' },
-        { value: 'arts', text: '예술/문화 분야' },
-        { value: 'selfEmployed', text: '자영업/개인사업' },
-        { value: 'notApplicable', text: '해당 없음/응답 원치 않음' }
-      ],
-      weight: 1,
-      category: 'basic',
-      optional: true
-    },
-    {
-      id: 'familyExpectation',
-      question: '진로 선택에 있어 가족의 기대가 어떤 영향을 미치나요?',
-      options: [
-        { value: 'highInfluence', text: '가족의 기대/희망이 큰 영향을 미침' },
-        { value: 'moderateInfluence', text: '가족의 의견을 참고하지만 본인의 결정이 중요' },
-        { value: 'lowInfluence', text: '주로 본인의 관심사에 따라 결정' },
-        { value: 'noInfluence', text: '가족의 기대와 무관하게 결정' },
-        { value: 'undiscussed', text: '아직 가족과 진로에 대해 깊게 논의하지 않음' }
-      ],
-      weight: 1,
-      category: 'basic'
-    },
+
+
+
     {
       id: 'collegeLocation',
       question: '대학 진학 시 선호하는 지역이 있나요?',
@@ -633,42 +417,7 @@ const EducationalGuidanceTool = () => {
       weight: 2,
       category: 'academic'
     },
-    {
-      id: 'futureSkills',
-      question: '미래를 위해 습득하고 싶은 역량은 무엇인가요? (최대 3개)',
-      options: [
-        { value: 'digitalLiteracy', text: '디지털 리터러시/코딩 능력' },
-        { value: 'foreignLanguage', text: '외국어 능력' },
-        { value: 'communication', text: '의사소통/발표 능력' },
-        { value: 'leadership', text: '리더십/조직 관리 능력' },
-        { value: 'creativity', text: '창의성/문제해결 능력' },
-        { value: 'criticalThinking', text: '비판적 사고/분석 능력' },
-        { value: 'collaboration', text: '협업/팀워크 능력' },
-        { value: 'entrepreneurship', text: '창업/기업가 정신' },
-        { value: 'emotionalIntelligence', text: '감성 지능/대인관계 능력' },
-        { value: 'technicalSkills', text: '전문 기술/자격증' }
-      ],
-      multiSelect: true,
-      maxSelect: 3,
-      weight: 3,
-      category: 'interest'
-    },
-    {
-      id: 'stressManagement',
-      question: '학업 스트레스를 주로 어떻게 해소하나요?',
-      options: [
-        { value: 'exercise', text: '운동/신체활동' },
-        { value: 'hobby', text: '취미활동/예술활동' },
-        { value: 'rest', text: '충분한 휴식/수면' },
-        { value: 'friends', text: '친구와의 대화/교류' },
-        { value: 'media', text: '미디어 감상(영화, 음악 등)' },
-        { value: 'games', text: '게임/오락' },
-        { value: 'meditation', text: '명상/심리적 이완' },
-        { value: 'noMethod', text: '특별한 스트레스 해소법 없음' }
-      ],
-      weight: 1,
-      category: 'personality'
-    }
+
   ];
 
   // 진로 추천 알고리즘
@@ -811,24 +560,6 @@ const EducationalGuidanceTool = () => {
         }
       }
       
-      // 부가적인 관심 분야에 따른 점수 부여
-      if (answers.secondaryInterest && answers.secondaryInterest !== 'none') {
-        switch(answers.secondaryInterest) {
-          case 'humanities':
-            scores.koreanLiterature.score += 10;
-            scores.foreignLanguage.score += 10;
-            scores.history.score += 10;
-            scores.philosophy.score += 10;
-            break;
-          case 'socialSciences':
-            scores.politics.score += 10;
-            scores.economics.score += 10;
-            scores.sociology.score += 10;
-            scores.psychology.score += 10;
-            break;
-          // 기타 관심 분야에 대한 처리...
-        }
-      }
       
       // 직업 가치관에 따른 점수 조정
       if (answers.careerValues) {
@@ -861,29 +592,7 @@ const EducationalGuidanceTool = () => {
       }
       
       // 선호하는 작업 환경에 따른 점수 조정
-      if (answers.workEnvironment) {
-        switch(answers.workEnvironment) {
-          case 'outdoor':
-            scores.agriculture.score += 10;
-            scores.civil.score += 8;
-            scores.earthScience.score += 8;
-            scores.physical.score += 8;
-            break;
-          case 'laboratory':
-            scores.chemistry.score += 10;
-            scores.biology.score += 10;
-            scores.physics.score += 10;
-            scores.medicine.score += 8;
-            break;
-          case 'creative':
-            scores.fineArts.score += 10;
-            scores.design.score += 10;
-            scores.music.score += 10;
-            scores.theater.score += 10;
-            break;
-          // 기타 환경에 따른 처리...
-        }
-      }
+
       
       // 관심 전공에 따른 직접적인 점수 부여
       if (answers.majorInterest) {
@@ -1227,85 +936,7 @@ const EducationalGuidanceTool = () => {
         console.warn("scores 객체에 'journalism' 속성이 없습니다.");
       }
       
-      // personalityType 속성 확인 및 처리
-      if (answers.personalityType) {
-        // 배열 또는 단일 값으로 처리
-        const types = Array.isArray(answers.personalityType) ? answers.personalityType : [answers.personalityType];
-        
-        types.forEach(type => {
-          switch(type) {
-            case 'analytical':
-              scores.math.score += 6;
-              scores.physics.score += 6;
-              scores.chemistry.score += 6;
-              
-              // 'engineering' 속성 안전 확인
-              if (hasEngineeringProperty) {
-                scores.engineering.score += 4;
-              } else {
-                // 대체: 관련 공학 전공에 점수 분배
-                scores.electrical.score += 2;
-                scores.mechanical.score += 2;
-              }
-              scores.medicine.score += 4;
-              break;
-            case 'creative':
-              scores.fineArts.score += 8;
-              scores.design.score += 8;
-              scores.music.score += 8;
-              scores.theater.score += 8;
-              scores.koreanLiterature.score += 6;
-              break;
-            case 'practical':
-              // 'engineering' 속성 안전 확인
-              if (hasEngineeringProperty) {
-                scores.engineering.score += 6;
-              } else {
-                // 대체: 관련 공학 전공에 점수 분배
-                scores.electrical.score += 3;
-                scores.mechanical.score += 3;
-              }
-              scores.nursing.score += 6;
-              scores.agriculture.score += 6;
-              scores.business.score += 4;
-              break;
-            case 'social':
-              scores.education.score += 8;
-              scores.psychology.score += 8;
-              scores.sociology.score += 6;
-              scores.nursing.score += 6;
-              scores.business.score += 4;
-              break;
-            case 'adventurous':
-              scores.physical.score += 6;
-              scores.theater.score += 6;
-              scores.civil.score += 4;
-              scores.biology.score += 4;
-              break;
-            case 'organized':
-              scores.business.score += 6;
-              // 'engineering' 속성 안전 확인
-              if (hasEngineeringProperty) {
-                scores.engineering.score += 6;
-              } else {
-                // 대체: 관련 공학 전공에 점수 분배
-                scores.electrical.score += 3;
-                scores.mechanical.score += 3;
-              }
-              scores.medicine.score += 4;
-              scores.pharmacy.score += 4;
-              scores.law.score += 4;
-              break;
-            default:
-              // 기본 케이스 추가: 알려지지 않은 성격 유형
-              console.warn("알 수 없는 성격 유형:", type);
-              // 기본적으로 여러 분야에 골고루 낮은 점수 부여
-              scores.business.score += 2;
-              scores.education.score += 2;
-              break;
-          }
-        });
-      }
+
       
       // 학습 스타일에 따른 점수 조정
       if (answers.studyHabits) {
@@ -1340,48 +971,7 @@ const EducationalGuidanceTool = () => {
         }
       }
       
-      // 리더십 스타일에 따른 점수 조정
-      if (answers.leadershipStyle) {
-        switch(answers.leadershipStyle) {
-          case 'leader':
-            scores.business.score += 6;
-            scores.politics.score += 6;
-            scores.education.score += 4;
-            break;
-          case 'supporter':
-            scores.nursing.score += 6;
-            scores.education.score += 6;
-            scores.psychology.score += 4;
-            break;
-          case 'specialist':
-            scores.medicine.score += 6;
-            // 'engineering' 속성 안전 확인
-            if (hasEngineeringProperty) {
-              scores.engineering.score += 6;
-            } else {
-              // 대체: 관련 공학 전공에 점수 분배
-              scores.electrical.score += 3;
-              scores.mechanical.score += 3;
-            }
-            scores.computerScience.score += 6;
-            break;
-          case 'mediator':
-            scores.psychology.score += 6;
-            scores.sociology.score += 6;
-            scores.law.score += 4;
-            break;
-          case 'independent':
-            scores.computerScience.score += 4;
-            scores.fineArts.score += 4;
-            scores.koreanLiterature.score += 4;
-            scores.math.score += 4;
-            break;
-          default:
-            // 기본 케이스 추가
-            console.warn("알 수 없는 리더십 스타일:", answers.leadershipStyle);
-            break;
-        }
-      }
+
       
       // 학습 어려움에 따른 점수 조정
       if (answers.learningDifficulties) {
