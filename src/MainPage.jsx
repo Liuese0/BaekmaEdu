@@ -915,114 +915,86 @@ const EducationalGuidanceTool = () => {
     },
     
     // 성격과 학습 스타일에 따른 점수 계산
-    // calculateScoresByPersonality 함수 수정
-    calculateScoresByPersonality: function(answers, scores) {
-      // 함수의 입력값 유효성 검사
-      if (!answers) {
-        console.warn("answers가 정의되지 않았습니다");
-        return scores;
+calculateScoresByPersonality: function(answers, scores) {
+  // 함수의 입력값 유효성 검사
+  if (!answers || !scores) {
+    console.warn("잘못된 입력값");
+    return scores || {};
+  }
+  
+  // 점수 계산을 위한 안전한 함수
+  const updateScore = (majorKey, value) => {
+    if (scores.hasOwnProperty(majorKey) && scores[majorKey] && typeof scores[majorKey].score === 'number') {
+      scores[majorKey].score += value;
+    }
+  };
+  
+  // 학습 스타일에 따른 점수 조정
+  if (answers.studyHabits) {
+    switch(answers.studyHabits) {
+      case 'selfStudy':
+        updateScore('math', 4);
+        updateScore('koreanLiterature', 4);
+        updateScore('computerScience', 4);
+        break;
+      case 'groupStudy':
+        updateScore('education', 4);
+        updateScore('business', 4);
+        updateScore('sociology', 4);
+        break;
+      case 'practicalLearning':
+        updateScore('fineArts', 6);
+        // 개별 공학 전공에 점수 부여
+        updateScore('electrical', 3);
+        updateScore('mechanical', 3);
+        updateScore('physical', 6);
+        updateScore('medicine', 4);
+        break;
+      default:
+        break;
+    }
+  }
+  
+  // 학습 어려움에 따른 점수 조정
+  if (answers.learningDifficulties) {
+    const difficulties = Array.isArray(answers.learningDifficulties) ? 
+                         answers.learningDifficulties : 
+                         [answers.learningDifficulties];
+    
+    difficulties.forEach(difficulty => {
+      switch(difficulty) {
+        case 'memorization':
+          updateScore('medicine', -4);
+          updateScore('law', -4);
+          updateScore('biology', -2);
+          updateScore('chemistry', -2);
+          break;
+        case 'calculation':
+          updateScore('math', -4);
+          updateScore('physics', -4);
+          updateScore('electrical', -1);
+          updateScore('mechanical', -1);
+          updateScore('chemistry', -2);
+          break;
+        case 'reading':
+          updateScore('koreanLiterature', -4);
+          updateScore('law', -4);
+          updateScore('history', -2);
+          updateScore('philosophy', -2);
+          break;
+        case 'writing':
+          updateScore('koreanLiterature', -4);
+          updateScore('law', -2);
+          updateScore('education', -2);
+          break;
+        default:
+          break;
       }
-      
-      // 'engineering' 속성이 없는 경우 처리
-      const hasEngineeringProperty = scores.hasOwnProperty('engineering');
-      if (!hasEngineeringProperty) {
-        // 로그 출력
-        console.warn("scores 객체에 'engineering' 속성이 없습니다. 관련 공학 전공으로 점수를 분배합니다.");
-      }
-
-      // 'journalism' 속성이 없는 경우 처리
-      const hasJournalismProperty = scores.hasOwnProperty('journalism');
-      if (!hasJournalismProperty) {
-        console.warn("scores 객체에 'journalism' 속성이 없습니다.");
-      }
-      
-
-      
-      // 학습 스타일에 따른 점수 조정
-      if (answers.studyHabits) {
-        switch(answers.studyHabits) {
-          case 'selfStudy':
-            scores.math.score += 4;
-            scores.koreanLiterature.score += 4;
-            scores.computerScience.score += 4;
-            break;
-          case 'groupStudy':
-            scores.education.score += 4;
-            scores.business.score += 4;
-            scores.sociology.score += 4;
-            break;
-          case 'practicalLearning':
-            scores.fineArts.score += 6;
-            // 'engineering' 속성 안전 확인
-            if (hasEngineeringProperty) {
-              scores.engineering.score += 6;
-            } else {
-              // 대체: 관련 공학 전공에 점수 분배
-              scores.electrical.score += 3;
-              scores.mechanical.score += 3;
-            }
-            scores.physical.score += 6;
-            scores.medicine.score += 4;
-            break;
-          default:
-            // 기본 케이스 추가
-            console.warn("알 수 없는 학습 스타일:", answers.studyHabits);
-            break;
-        }
-      }
-      
-
-      
-      // 학습 어려움에 따른 점수 조정
-      if (answers.learningDifficulties) {
-        const difficulties = Array.isArray(answers.learningDifficulties) ? answers.learningDifficulties : [answers.learningDifficulties];
-        
-        difficulties.forEach(difficulty => {
-          switch(difficulty) {
-            case 'memorization':
-              scores.medicine.score -= 4;
-              scores.law.score -= 4;
-              scores.biology.score -= 2;
-              scores.chemistry.score -= 2;
-              break;
-            case 'calculation':
-              scores.math.score -= 4;
-              scores.physics.score -= 4;
-              // 'engineering' 속성 안전 확인
-              if (hasEngineeringProperty) {
-                scores.engineering.score -= 2;
-              } else {
-                // 대체: 관련 공학 전공에 점수 감소
-                scores.electrical.score -= 1;
-                scores.mechanical.score -= 1;
-              }
-              scores.chemistry.score -= 2;
-              break;
-            case 'reading':
-              scores.koreanLiterature.score -= 4;
-              scores.law.score -= 4;
-              scores.history.score -= 2;
-              scores.philosophy.score -= 2;
-              break;
-            case 'writing':
-              scores.koreanLiterature.score -= 4;
-              // 'journalism' 속성 안전 확인
-              if (hasJournalismProperty) {
-                scores.journalism.score -= 4;
-              }
-              scores.law.score -= 2;
-              scores.education.score -= 2;
-              break;
-            default:
-              // 기본 케이스 추가
-              console.warn("알 수 없는 학습 어려움:", difficulty);
-              break;
-          }
-        });
-      }
-      
-      return scores;
-    },
+    });
+  }
+  
+  return scores;
+},
     
     // 학업 성취도에 따른 현실적 적합도 조정
     adjustScoresByAcademicRanking: function(answers, scores) {
@@ -1091,24 +1063,49 @@ const EducationalGuidanceTool = () => {
       return scores;
     },
     
-    // 점수를 기준으로 정렬하여 추천 결과 반환
-    sortRecommendationsByScore: function(scores) {
-      // 점수를 기준으로 정렬 가능한 배열로 변환
-      const scoreArray = Object.keys(scores).map(key => {
-        return {
-          id: key,
-          name: scores[key].name,
-          category: scores[key].category,
-          description: scores[key].description,
-          score: scores[key].score
-        };
-      });
-      
-      // 점수 기준 내림차순 정렬
-      scoreArray.sort((a, b) => b.score - a.score);
-      
-      return scoreArray;
-    },
+
+// 점수를 기준으로 정렬하여 추천 결과 반환
+sortRecommendationsByScore: function(scores) {
+  if (!scores || typeof scores !== 'object') {
+    console.warn("정렬할 점수 객체가 유효하지 않습니다.");
+    return []; // 빈 배열 반환
+  }
+  
+  // 점수를 기준으로 정렬 가능한 배열로 변환
+  const scoreArray = Object.keys(scores).map(key => {
+    if (!scores[key]) return null;
+    
+    return {
+      id: key,
+      name: scores[key].name || "알 수 없는 전공",
+      category: scores[key].category || "기타",
+      description: scores[key].description || "설명 없음",
+      score: typeof scores[key].score === 'number' ? scores[key].score : 0
+    };
+  }).filter(item => item !== null); // null 항목 제거
+  
+  // 점수 기준 내림차순 정렬 (안전한 방식)
+  scoreArray.sort((a, b) => {
+    const scoreA = typeof a.score === 'number' ? a.score : 0;
+    const scoreB = typeof b.score === 'number' ? b.score : 0;
+    return scoreB - scoreA;
+  });
+  
+  // 결과가 비어있으면 기본값 제공
+  if (scoreArray.length === 0) {
+    return [
+      {
+        id: "default",
+        name: "기본 추천 전공",
+        category: "일반",
+        description: "데이터 분석 중 오류가 발생했습니다.",
+        score: 100
+      }
+    ];
+  }
+  
+  return scoreArray;
+}
     
     // 대학 추천 기능
     recommendUniversities: function(answers, majorRecommendations) {
@@ -1480,7 +1477,18 @@ const EducationalGuidanceTool = () => {
   }
 // 결과 화면 렌더링 함수
 const renderResult = () => {
-  if (!result) return null;
+  if (!result) return (
+    <div className="result-error">
+      <h2>결과를 불러올 수 없습니다</h2>
+      <p>다시 시도해 주세요.</p>
+      <button className="restart-button" onClick={handleReset}>다시 시작하기</button>
+    </div>
+  );
+  
+  // 결과 객체의 각 속성 안전하게 접근
+  const recommendedMajors = result.recommendedMajors || [];
+  const recommendedUniversities = result.recommendedUniversities || [];
+  const careerRoadmap = result.careerRoadmap || {};
   
   return (
     <div className="result-container">
@@ -1489,16 +1497,16 @@ const renderResult = () => {
       <div className="recommendation-section">
         <h3>추천 전공</h3>
         <div className="recommendation-list">
-          {result.recommendedMajors.map((major, index) => (
+          {recommendedMajors.map((major, index) => (
             <div key={index} className="recommendation-card">
               <div className="recommendation-header">
                 <span className="recommendation-rank">{index + 1}</span>
-                <h4>{major.name}</h4>
-                <span className="recommendation-category">{major.category}</span>
+                <h4>{major.name || "전공명 없음"}</h4>
+                <span className="recommendation-category">{major.category || "분류 없음"}</span>
               </div>
-              <p>{major.description}</p>
+              <p>{major.description || "설명 없음"}</p>
               <div className="recommendation-score">
-                적합도: <span className="score">{Math.round(major.score)}</span>
+                적합도: <span className="score">{typeof major.score === 'number' ? Math.round(major.score) : 0}</span>
               </div>
             </div>
           ))}
@@ -1508,25 +1516,32 @@ const renderResult = () => {
       <div className="university-section">
         <h3>추천 대학</h3>
         <ul className="university-list">
-          {result.recommendedUniversities.map((univ, index) => (
-            <li key={index}>{univ}</li>
-          ))}
+          {recommendedUniversities.length > 0 ? (
+            recommendedUniversities.map((univ, index) => (
+              <li key={index}>{univ}</li>
+            ))
+          ) : (
+            <li>추천 대학 정보를 불러올 수 없습니다.</li>
+          )}
         </ul>
       </div>
       
       <div className="roadmap-section">
         <h3>진로 로드맵</h3>
         <div className="roadmap-timeline">
-          {Object.keys(result.careerRoadmap).map((key) => (
-            <div key={key} className="roadmap-step">
-              <h4>{result.careerRoadmap[key].title}</h4>
-              <ul>
-                {result.careerRoadmap[key].tasks.map((task, index) => (
-                  <li key={index}>{task}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {Object.keys(careerRoadmap).map((key) => {
+            const step = careerRoadmap[key] || {title: key, tasks: ["정보 없음"]};
+            return (
+              <div key={key} className="roadmap-step">
+                <h4>{step.title || key}</h4>
+                <ul>
+                  {(step.tasks || []).map((task, index) => (
+                    <li key={index}>{task}</li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -1738,23 +1753,91 @@ const handleNext = () => {
 };
 
 // 결과 계산 처리
+// 결과 계산 처리
 const calculateResults = () => {
   setLoading(true);
   
   // 계산에 약간의 딜레이를 주어 로딩 효과 보여주기
   setTimeout(() => {
-    const recommendedMajors = careerRecommendationAlgorithm.recommendMajors(answers);
-    const recommendedUniversities = careerRecommendationAlgorithm.recommendUniversities(answers, recommendedMajors);
-    const careerRoadmap = careerRecommendationAlgorithm.generateCareerRoadmap(answers, recommendedMajors);
-    
-    setResult({
-      recommendedMajors,
-      recommendedUniversities,
-      careerRoadmap
-    });
-    
-    setLoading(false);
-  }, 1500);
+    try {
+      // 각 알고리즘 함수 호출 시 안전한 반환값 확보
+      let recommendedMajors = [];
+      try {
+        recommendedMajors = careerRecommendationAlgorithm.recommendMajors(answers) || [];
+      } catch (majorError) {
+        console.error("전공 추천 계산 중 오류:", majorError);
+        recommendedMajors = [
+          {
+            name: "기본 추천 전공", 
+            category: "일반", 
+            description: "세부 계산 중 오류가 발생했습니다.", 
+            score: 100,
+            id: "default"
+          }
+        ];
+      }
+      
+      let recommendedUniversities = [];
+      try {
+        recommendedUniversities = careerRecommendationAlgorithm.recommendUniversities(answers, recommendedMajors) || 
+                                ["서울대학교", "연세대학교", "고려대학교", "성균관대학교", "한양대학교"];
+      } catch (univError) {
+        console.error("대학 추천 계산 중 오류:", univError);
+        recommendedUniversities = ["대학 추천 생성 중 오류가 발생했습니다"];
+      }
+      
+      let careerRoadmap = {};
+      try {
+        careerRoadmap = careerRecommendationAlgorithm.generateCareerRoadmap(answers, recommendedMajors) || {
+          currentYear: {title: "현재", tasks: ["기본 진로 계획"]},
+          nextYear: {title: "다음 학년", tasks: ["기본 진로 계획"]},
+          graduation: {title: "졸업 전", tasks: ["기본 진로 계획"]},
+          university: {title: "대학 진학 후", tasks: ["기본 진로 계획"]},
+          career: {title: "진로 계획", tasks: ["기본 진로 계획"]}
+        };
+      } catch (roadmapError) {
+        console.error("진로 로드맵 계산 중 오류:", roadmapError);
+        careerRoadmap = {
+          currentYear: {title: "현재", tasks: ["로드맵 생성 중 오류가 발생했습니다"]},
+          nextYear: {title: "다음 학년", tasks: ["로드맵 생성 중 오류가 발생했습니다"]},
+          graduation: {title: "졸업 전", tasks: ["로드맵 생성 중 오류가 발생했습니다"]},
+          university: {title: "대학 진학 후", tasks: ["로드맵 생성 중 오류가 발생했습니다"]},
+          career: {title: "진로 계획", tasks: ["로드맵 생성 중 오류가 발생했습니다"]}
+        };
+      }
+      
+      // 최종 결과 설정
+      setResult({
+        recommendedMajors,
+        recommendedUniversities,
+        careerRoadmap
+      });
+    } catch (generalError) {
+      console.error("전체 결과 계산 중 오류 발생:", generalError);
+      // 에러 발생 시 기본 결과 제공
+      setResult({
+        recommendedMajors: [
+          {
+            name: "학과 추천 중 오류가 발생했습니다", 
+            category: "오류", 
+            description: "다시 시도해주세요", 
+            score: 100,
+            id: "error"
+          }
+        ],
+        recommendedUniversities: ["대학 추천 중 오류가 발생했습니다"],
+        careerRoadmap: {
+          currentYear: {title: "현재", tasks: ["다시 시도해주세요"]},
+          nextYear: {title: "다음 학년", tasks: ["다시 시도해주세요"]},
+          graduation: {title: "졸업 전", tasks: ["다시 시도해주세요"]},
+          university: {title: "대학 진학 후", tasks: ["다시 시도해주세요"]},
+          career: {title: "진로 계획", tasks: ["다시 시도해주세요"]}
+        }
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, 600); // 로딩 시간 단축 (800 -> 600)
 };
 
 // 초기화 및 재시작 함수
