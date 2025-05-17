@@ -1094,6 +1094,7 @@ initializeScores: function() {
     },
     
     // 성격과 학습 스타일에 따른 점수 계산
+// calculateScoresByPersonality 함수 수정
 calculateScoresByPersonality: function(answers, scores) {
   // 함수의 입력값 유효성 검사
   if (!answers || !scores) {
@@ -1475,9 +1476,9 @@ sortRecommendationsByScore: function(scores) {
       // 의학계열 대학 추천 로직
       const universities = {
         top: ['서울대학교 의과대학', '연세대학교 의과대학', '고려대학교 의과대학', '성균관대학교 의과대학', '울산대학교 의과대학','이화여자대학교 의과대학', '한양대학교 의과대학', '중앙대학교 의과대학', '경희대학교 의과대학', '가톨릭대학교 의과대학','인하대학교 의과대학', '아주대학교 의과대학', '건국대학교 의과대학', '동국대학교 의과대학', '순천향대학교 의과대학','을지대학교 의과대학', '가천대학교 의과대학', '차의과학대학교', '연세대학교 원주의과대학', '건양대학교 의과대학'],
-        high: [],
-        mid: [],
-        low: []
+        high: ['기타'],
+        mid: ['기타'],
+        low: ['기타']
       };
       
       return universities[academicTier];
@@ -1501,7 +1502,7 @@ sortRecommendationsByScore: function(scores) {
         top: ['서울대학교', '연세대학교', '고려대학교', '서강대학교', '성균관대학교','한양대학교', '이화여자대학교', '중앙대학교', '경희대학교', '건국대학교', '동국대학교', '홍익대학교','서울시립대학교'],
         high: [ '아주대학교', '인하대학교','국민대학교', '세종대학교', '단국대학교', '명지대학교', '숭실대학교', '부산대학교', '경북대학교','서울과학기술대학교','한국항공대학교','전남대학교'],
         mid: ['한국공학대학교','충북대학교', '인천대학교', '가톨릭대학교','경기대학교','상명대학교'],
-        low: []
+        low: ['기타']
       };
       
       return universities[academicTier];
@@ -1653,6 +1654,7 @@ sortRecommendationsByScore: function(scores) {
       return roadmap;
     } // 여기까지는 함수의 내용
   }
+// 결과 화면 렌더링 함수
 // 결과 화면 렌더링 함수
 const renderResult = () => {
   if (!result) return (
@@ -1930,6 +1932,7 @@ const handleNext = () => {
   }
 };
 
+// 결과 계산 처리
 // 결과 계산 처리
 const calculateResults = async () => {
   setLoading(true);
