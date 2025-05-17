@@ -443,57 +443,57 @@ const EducationalGuidanceTool = () => {
     },
     
     // 진로 적합성 점수 초기화
-    initializeScores: function() {
-      return {
-        // 인문계열
-        koreanLiterature: { score: 0, category: '인문계열', name: '국어국문학', description: '언어, 문학, 문화에 대한 탐구와 창작 능력을 기르는 학문' },
-        foreignLanguage: { score: 0, category: '인문계열', name: '외국어/언어학', description: '다양한 언어와 그 구조, 문화적 배경을 연구하는 학문' },
-        history: { score: 0, category: '인문계열', name: '역사/고고학', description: '인류의 과거와 문화유산을 탐구하고 분석하는 학문' },
-        philosophy: { score: 0, category: '인문계열', name: '철학/윤리학', description: '인간의 사고, 존재, 가치에 대한 근본적 질문을 탐구하는 학문' },
-        
-        // 사회계열
-        politics: { score: 0, category: '사회계열', name: '정치외교학', description: '정치 현상과 국제 관계를 분석하고 이해하는 학문' },
-        economics: { score: 0, category: '사회계열', name: '경제학', description: '자원의 생산, 분배, 소비에 관한 원리와 현상을 연구하는 학문' },
-        business: { score: 0, category: '사회계열', name: '경영학', description: '조직의 운영과 관리, 전략 수립 방법을 연구하는 학문' },
-        sociology: { score: 0, category: '사회계열', name: '사회학', description: '사회 구조와 변동, 집단 행동을 분석하는 학문' },
-        psychology: { score: 0, category: '사회계열', name: '심리학', description: '인간의 행동과 정신 과정을 과학적으로 연구하는 학문' },
-        education: { score: 0, category: '사회계열', name: '교육학', description: '교육의 이론과 방법, 제도를 연구하는 학문' },
-        law: { score: 0, category: '사회계열', name: '법학', description: '법률과 제도, 법적 원리를 연구하는 학문' },
-        
-        // 자연계열
-        math: { score: 0, category: '자연계열', name: '수학/통계학', description: '수, 구조, 공간, 변화 등의 추상적 개념과 법칙을 연구하는 학문' },
-        physics: { score: 0, category: '자연계열', name: '물리학', description: '물질과 에너지, 자연 법칙을 탐구하는 기초 과학' },
-        chemistry: { score: 0, category: '자연계열', name: '화학', description: '물질의 구조, 성질, 변화를 연구하는 학문' },
-        biology: { score: 0, category: '자연계열', name: '생물학', description: '생명체의 구조, 기능, 진화, 분포를 연구하는 학문' },
-        earthScience: { score: 0, category: '자연계열', name: '지구과학', description: '지구와 우주의 구조, 역사, 현상을 연구하는 학문' },
-        
-        // 공학계열
-        computerScience: { score: 0, category: '공학계열', name: '컴퓨터공학', description: '컴퓨터 시스템과 소프트웨어 개발 원리를 연구하는 학문' },
-        electrical: { score: 0, category: '공학계열', name: '전기전자공학', description: '전기, 전자, 통신 시스템 설계와 응용을 연구하는 학문' },
-        mechanical: { score: 0, category: '공학계열', name: '기계공학', description: '기계 시스템의 설계, 분석, 제조를 연구하는 학문' },
-        civil: { score: 0, category: '공학계열', name: '건축/토목공학', description: '건물과 구조물의 설계, 시공, 유지를 연구하는 학문' },
-        chemicalEng: { score: 0, category: '공학계열', name: '화학공학', description: '화학적 공정과 제품 개발, 설계를 연구하는 학문' },
-        
-        // 의학계열
-        medicine: { score: 0, category: '의학계열', name: '의학', description: '질병의 진단, 치료, 예방을 연구하는 학문' },
-        dentistry: { score: 0, category: '의학계열', name: '치의학', description: '구강 건강과 질환을 연구하고 치료하는 학문' },
-        pharmacy: { score: 0, category: '의학계열', name: '약학', description: '약물의 개발, 제조, 사용을 연구하는 학문' },
-        nursing: { score: 0, category: '의학계열', name: '간호학', description: '환자 돌봄과 건강 관리를 연구하는 학문' },
-        healthScience: { score: 0, category: '의학계열', name: '보건학', description: '개인과 지역사회의 건강 증진을 연구하는 학문' },
-        
-        // 농림/생활계열
-        agriculture: { score: 0, category: '농림/생활계열', name: '농업/산림학', description: '식물 재배, 산림 관리, 환경 보전을 연구하는 학문' },
-        foodScience: { score: 0, category: '농림/생활계열', name: '식품영양학', description: '식품의 특성과 영양, 식생활을 연구하는 학문' },
-        veterinary: { score: 0, category: '농림/생활계열', name: '수의학', description: '동물의 질병 예방과 치료를 연구하는 학문' },
-        
-        // 예체능계열
-        fineArts: { score: 0, category: '예체능계열', name: '미술/조형예술', description: '시각 예술과 조형 활동을 연구하고 창작하는 학문' },
-        design: { score: 0, category: '예체능계열', name: '디자인', description: '실용적이고 미적인 제품과 환경을 설계하는 학문' },
-        music: { score: 0, category: '예체능계열', name: '음악', description: '음악 이론, 연주, 작곡을 연구하고 실천하는 학문' },
-        theater: { score: 0, category: '예체능계열', name: '연극/영화', description: '공연 예술과 영상 미디어를 연구하고 창작하는 학문' },
-        physical: { score: 0, category: '예체능계열', name: '체육/스포츠과학', description: '신체 활동과 스포츠를 과학적으로 연구하는 학문' }
-      };
-    },
+initializeScores: function() {
+  return {
+    // 인문계열
+    koreanLiterature: { score: 0, category: '인문계열', name: '국어국문학', description: '언어, 문학, 문화에 대한 탐구와 창작 능력을 기르는 학문' },
+    foreignLanguage: { score: 0, category: '인문계열', name: '외국어/언어학', description: '다양한 언어와 그 구조, 문화적 배경을 연구하는 학문' },
+    history: { score: 0, category: '인문계열', name: '역사/고고학', description: '인류의 과거와 문화유산을 탐구하고 분석하는 학문' },
+    philosophy: { score: 0, category: '인문계열', name: '철학/윤리학', description: '인간의 사고, 존재, 가치에 대한 근본적 질문을 탐구하는 학문' },
+    
+    // 사회계열
+    politics: { score: 0, category: '사회계열', name: '정치외교학', description: '정치 현상과 국제 관계를 분석하고 이해하는 학문' },
+    economics: { score: 0, category: '사회계열', name: '경제학', description: '자원의 생산, 분배, 소비에 관한 원리와 현상을 연구하는 학문' },
+    business: { score: 0, category: '사회계열', name: '경영학', description: '조직의 운영과 관리, 전략 수립 방법을 연구하는 학문' },
+    sociology: { score: 0, category: '사회계열', name: '사회학', description: '사회 구조와 변동, 집단 행동을 분석하는 학문' },
+    psychology: { score: 0, category: '사회계열', name: '심리학', description: '인간의 행동과 정신 과정을 과학적으로 연구하는 학문' },
+    education: { score: 0, category: '사회계열', name: '교육학', description: '교육의 이론과 방법, 제도를 연구하는 학문' },
+    law: { score: 0, category: '사회계열', name: '법학', description: '법률과 제도, 법적 원리를 연구하는 학문' },
+    
+    // 자연계열
+    math: { score: 0, category: '자연계열', name: '수학/통계학', description: '수, 구조, 공간, 변화 등의 추상적 개념과 법칙을 연구하는 학문' },
+    physics: { score: 0, category: '자연계열', name: '물리학', description: '물질과 에너지, 자연 법칙을 탐구하는 기초 과학' },
+    chemistry: { score: 0, category: '자연계열', name: '화학', description: '물질의 구조, 성질, 변화를 연구하는 학문' },
+    biology: { score: 0, category: '자연계열', name: '생물학', description: '생명체의 구조, 기능, 진화, 분포를 연구하는 학문' },
+    earthScience: { score: 0, category: '자연계열', name: '지구과학', description: '지구와 우주의 구조, 역사, 현상을 연구하는 학문' },
+    
+    // 공학계열
+    computerScience: { score: 0, category: '공학계열', name: '컴퓨터공학', description: '컴퓨터 시스템과 소프트웨어 개발 원리를 연구하는 학문' },
+    electrical: { score: 0, category: '공학계열', name: '전기전자공학', description: '전기, 전자, 통신 시스템 설계와 응용을 연구하는 학문' },
+    mechanical: { score: 0, category: '공학계열', name: '기계공학', description: '기계 시스템의 설계, 분석, 제조를 연구하는 학문' },
+    civil: { score: 0, category: '공학계열', name: '건축/토목공학', description: '건물과 구조물의 설계, 시공, 유지를 연구하는 학문' },
+    chemicalEng: { score: 0, category: '공학계열', name: '화학공학', description: '화학적 공정과 제품 개발, 설계를 연구하는 학문' },
+    
+    // 의학계열
+    medicine: { score: 0, category: '의학계열', name: '의학', description: '질병의 진단, 치료, 예방을 연구하는 학문' },
+    dentistry: { score: 0, category: '의학계열', name: '치의학', description: '구강 건강과 질환을 연구하고 치료하는 학문' },
+    pharmacy: { score: 0, category: '의학계열', name: '약학', description: '약물의 개발, 제조, 사용을 연구하는 학문' },
+    nursing: { score: 0, category: '의학계열', name: '간호학', description: '환자 돌봄과 건강 관리를 연구하는 학문' },
+    healthScience: { score: 0, category: '의학계열', name: '보건학', description: '개인과 지역사회의 건강 증진을 연구하는 학문' },
+    
+    // 농림/생활계열
+    agriculture: { score: 0, category: '농림/생활계열', name: '농업/산림학', description: '식물 재배, 산림 관리, 환경 보전을 연구하는 학문' },
+    foodScience: { score: 0, category: '농림/생활계열', name: '식품영양학', description: '식품의 특성과 영양, 식생활을 연구하는 학문' },
+    veterinary: { score: 0, category: '농림/생활계열', name: '수의학', description: '동물의 질병 예방과 치료를 연구하는 학문' },
+    
+    // 예체능계열
+    fineArts: { score: 0, category: '예체능계열', name: '미술/조형예술', description: '시각 예술과 조형 활동을 연구하고 창작하는 학문' },
+    design: { score: 0, category: '예체능계열', name: '디자인', description: '실용적이고 미적인 제품과 환경을 설계하는 학문' },
+    music: { score: 0, category: '예체능계열', name: '음악', description: '음악 이론, 연주, 작곡을 연구하고 실천하는 학문' },
+    theater: { score: 0, category: '예체능계열', name: '연극/영화', description: '공연 예술과 영상 미디어를 연구하고 창작하는 학문' },
+    physical: { score: 0, category: '예체능계열', name: '체육/스포츠과학', description: '신체 활동과 스포츠를 과학적으로 연구하는 학문' }
+  };
+},
     
     // 관심 분야에 따른 점수 계산
     calculateScoresByInterest: function(answers, scores) {
@@ -612,25 +612,25 @@ const EducationalGuidanceTool = () => {
     calculateScoresByAcademic: function(answers, scores) {
       // 전체 교과 등급에 따른 점수 보정
       if (answers.academicRanking) {
-        let academicMultiplier = 1.0;
+        let academicMultiplier = 1;
         
         switch(answers.academicRanking) {
           case 'rank1':
-            academicMultiplier = 1.2; // 상위권 학생은 모든 전공 점수를 가산
+            academicMultiplier = 5; // 상위권 학생은 모든 전공 점수를 가산
             break;
           case 'rank2':
-            academicMultiplier = 1.1;
+            academicMultiplier = 4;
             break;
           case 'rank3':
-            academicMultiplier = 1.0;
+            academicMultiplier = 3;
             break;
           case 'rank4':
-            academicMultiplier = 0.9;
+            academicMultiplier = 2;
             break;
           case 'rank5':
           case 'rank6':
           case 'rank7':
-            academicMultiplier = 0.8; // 하위권 학생은 점수 감산
+            academicMultiplier = 1; // 하위권 학생은 점수 감산
             break;
         }
         
@@ -641,79 +641,258 @@ const EducationalGuidanceTool = () => {
       }
       
       // 과목별 등급에 따른 특정 전공 점수 조정
-      if (answers.subjectRanking) {
-        const subjects = Array.isArray(answers.subjectRanking) ? answers.subjectRanking : [answers.subjectRanking];
-        
-        subjects.forEach(subject => {
-          if (subject === 'koreanHigh') {
-            scores.koreanLiterature.score += 15;
-            scores.foreignLanguage.score += 8;
-            scores.education.score += 8;
-            scores.law.score += 8;
-          } else if (subject === 'mathHigh') {
-            scores.math.score += 15;
-            scores.physics.score += 10;
-            scores.computerScience.score += 10;
-            scores.electrical.score += 10;
-            scores.economics.score += 8;
-          } else if (subject === 'englishHigh') {
-            scores.foreignLanguage.score += 15;
-            scores.business.score += 8;
-            scores.theater.score += 5;
-          } else if (subject === 'scienceHigh') {
-            scores.physics.score += 10;
-            scores.chemistry.score += 10;
-            scores.biology.score += 10;
-            scores.medicine.score += 8;
-            scores.engineering.score += 8;
-          } else if (subject === 'socialHigh') {
-            scores.history.score += 10;
-            scores.politics.score += 10;
-            scores.economics.score += 10;
-            scores.sociology.score += 10;
-            scores.law.score += 8;
-          }
-          // 중간/하위 등급에 대한 처리도 추가할 수 있음
-        });
+  if (answers.subjectRanking) {
+    const subjects = Array.isArray(answers.subjectRanking) ? answers.subjectRanking : [answers.subjectRanking];
+    
+    subjects.forEach(subject => {
+      if (subject === 'koreanHigh') {
+        scores.koreanLiterature.score += 15;
+        scores.foreignLanguage.score += 8;
+        scores.education.score += 8;
+        scores.law.score += 8;
+        scores.journalism.score += 10;
+        scores.philosophy.score += 8;
+        scores.history.score += 6;
+      } else if (subject === 'koreanMid') {
+        scores.koreanLiterature.score += 8;
+        scores.foreignLanguage.score += 4;
+        scores.education.score += 4;
+        scores.journalism.score += 5;
+      } else if (subject === 'koreanLow') {
+        scores.koreanLiterature.score -= 5;
+        scores.journalism.score -= 3;
+      } else if (subject === 'mathHigh') {
+        scores.math.score += 15;
+        scores.physics.score += 10;
+        scores.computerScience.score += 10;
+        scores.electrical.score += 10;
+        scores.economics.score += 8;
+        scores.mechanical.score += 8;
+        scores.statistics.score += 12;
+        scores.finance.score += 10;
+        scores.civil.score += 6;
+      } else if (subject === 'mathMid') {
+        scores.math.score += 8;
+        scores.physics.score += 5;
+        scores.computerScience.score += 5;
+        scores.economics.score += 4;
+      } else if (subject === 'mathLow') {
+        scores.math.score -= 5;
+        scores.physics.score -= 3;
+        scores.computerScience.score -= 2;
+        scores.mechanical.score -= 3;
+      } else if (subject === 'englishHigh') {
+        scores.foreignLanguage.score += 15;
+        scores.business.score += 8;
+        scores.theater.score += 5;
+        scores.politics.score += 6;
+        scores.international.score += 10;
+        scores.tourism.score += 8;
+        scores.journalism.score += 5;
+      } else if (subject === 'englishMid') {
+        scores.foreignLanguage.score += 8;
+        scores.business.score += 4;
+        scores.tourism.score += 4;
+      } else if (subject === 'englishLow') {
+        scores.foreignLanguage.score -= 5;
+        scores.international.score -= 5;
+      } else if (subject === 'scienceHigh') {
+        scores.physics.score += 10;
+        scores.chemistry.score += 10;
+        scores.biology.score += 10;
+        scores.medicine.score += 8;
+        scores.engineering.score += 8;
+        scores.pharmacy.score += 8;
+        scores.healthScience.score += 8;
+        scores.earthScience.score += 10;
+        scores.agriculture.score += 6;
+        scores.environmental.score += 6;
+      } else if (subject === 'scienceMid') {
+        scores.physics.score += 5;
+        scores.chemistry.score += 5;
+        scores.biology.score += 5;
+        scores.medicine.score += 4;
+        scores.engineering.score += 4;
+      } else if (subject === 'scienceLow') {
+        scores.physics.score -= 5;
+        scores.chemistry.score -= 5;
+        scores.medicine.score -= 5;
+        scores.engineering.score -= 3;
+      } else if (subject === 'socialHigh') {
+        scores.history.score += 10;
+        scores.politics.score += 10;
+        scores.economics.score += 10;
+        scores.sociology.score += 10;
+        scores.law.score += 8;
+        scores.education.score += 6;
+        scores.psychology.score += 8;
+        scores.journalism.score += 6;
+        scores.philosophy.score += 8;
+      } else if (subject === 'socialMid') {
+        scores.history.score += 5;
+        scores.politics.score += 5;
+        scores.economics.score += 5;
+        scores.sociology.score += 5;
+      } else if (subject === 'socialLow') {
+        scores.history.score -= 3;
+        scores.politics.score -= 3;
+        scores.law.score -= 5;
       }
+    });
+  }
       
       // 선택 과목에 따른 점수 조정
-      if (answers.selectedSubjects) {
-        const subjects = Array.isArray(answers.selectedSubjects) ? answers.selectedSubjects : [answers.selectedSubjects];
-        
-        subjects.forEach(subject => {
-          switch(subject) {
-            case 'literature':
-              scores.koreanLiterature.score += 8;
-              scores.education.score += 5;
-              break;
-            case 'calculus':
-              scores.math.score += 10;
-              scores.physics.score += 8;
-              scores.engineering.score += 8;
-              break;
-            case 'physics1':
-            case 'physics2':
-              scores.physics.score += 10;
-              scores.mechanical.score += 8;
-              scores.electrical.score += 8;
-              break;
-            case 'chemistry1':
-            case 'chemistry2':
-              scores.chemistry.score += 10;
-              scores.chemicalEng.score += 8;
-              scores.pharmacy.score += 8;
-              break;
-            case 'biology1':
-            case 'biology2':
-              scores.biology.score += 10;
-              scores.medicine.score += 8;
-              scores.nursing.score += 8;
-              break;
-            // 기타 과목에 대한 처리...
-          }
-        });
+  if (answers.selectedSubjects) {
+    const subjects = Array.isArray(answers.selectedSubjects) ? answers.selectedSubjects : [answers.selectedSubjects];
+    
+    subjects.forEach(subject => {
+      switch(subject) {
+        case 'literature':
+          scores.koreanLiterature.score += 12;
+          scores.education.score += 5;
+          scores.journalism.score += 6;
+          scores.theater.score += 4;
+          break;
+        case 'math1':
+          scores.math.score += 8;
+          scores.economics.score += 5;
+          scores.business.score += 4;
+          break;
+        case 'math2':
+          scores.math.score += 10;
+          scores.physics.score += 5;
+          scores.computerScience.score += 6;
+          break;
+        case 'calculus':
+          scores.math.score += 12;
+          scores.physics.score += 10;
+          scores.engineering.score += 8;
+          scores.electrical.score += 8;
+          scores.mechanical.score += 8;
+          break;
+        case 'statistics':
+          scores.math.score += 8;
+          scores.economics.score += 8;
+          scores.business.score += 8;
+          scores.psychology.score += 6;
+          scores.sociology.score += 6;
+          break;
+        case 'geometry':
+          scores.math.score += 10;
+          scores.civil.score += 8;
+          scores.architecture.score += 8;
+          scores.arts.score += 4;
+          break;
+        case 'physics1':
+          scores.physics.score += 10;
+          scores.mechanical.score += 8;
+          scores.electrical.score += 8;
+          scores.engineering.score += 6;
+          break;
+        case 'physics2':
+          scores.physics.score += 12;
+          scores.mechanical.score += 10;
+          scores.electrical.score += 10;
+          scores.engineering.score += 8;
+          break;
+        case 'chemistry1':
+          scores.chemistry.score += 10;
+          scores.chemicalEng.score += 8;
+          scores.pharmacy.score += 8;
+          scores.biology.score += 5;
+          break;
+        case 'chemistry2':
+          scores.chemistry.score += 12;
+          scores.chemicalEng.score += 10;
+          scores.pharmacy.score += 10;
+          scores.medicine.score += 6;
+          break;
+        case 'biology1':
+          scores.biology.score += 10;
+          scores.medicine.score += 8;
+          scores.nursing.score += 8;
+          scores.agriculture.score += 6;
+          break;
+        case 'biology2':
+          scores.biology.score += 12;
+          scores.medicine.score += 10;
+          scores.nursing.score += 10;
+          scores.pharmacy.score += 8;
+          scores.healthScience.score += 8;
+          break;
+        case 'earthScience1':
+          scores.earthScience.score += 10;
+          scores.agriculture.score += 6;
+          scores.environmental.score += 8;
+          break;
+        case 'earthScience2':
+          scores.earthScience.score += 12;
+          scores.environmental.score += 10;
+          scores.geology.score += 10;
+          scores.geography.score += 8;
+          break;
+        case 'koreanHistory':
+          scores.history.score += 10;
+          scores.koreanLiterature.score += 6;
+          scores.education.score += 5;
+          scores.politics.score += 4;
+          break;
+        case 'worldHistory':
+          scores.history.score += 10;
+          scores.politics.score += 8;
+          scores.international.score += 8;
+          scores.sociology.score += 5;
+          break;
+        case 'ethics':
+          scores.philosophy.score += 10;
+          scores.sociology.score += 8;
+          scores.psychology.score += 6;
+          scores.education.score += 6;
+          break;
+        case 'politics':
+          scores.politics.score += 12;
+          scores.law.score += 10;
+          scores.sociology.score += 8;
+          scores.economics.score += 6;
+          break;
+        case 'economics':
+          scores.economics.score += 12;
+          scores.business.score += 10;
+          scores.politics.score += 6;
+          scores.finance.score += 10;
+          break;
+        case 'society':
+          scores.sociology.score += 12;
+          scores.psychology.score += 8;
+          scores.politics.score += 6;
+          scores.education.score += 5;
+          break;
+        case 'programming':
+          scores.computerScience.score += 15;
+          scores.electrical.score += 10;
+          scores.statistics.score += 8;
+          scores.business.score += 5;
+          break;
+        case 'secondLanguage':
+          scores.foreignLanguage.score += 12;
+          scores.international.score += 8;
+          scores.tourism.score += 8;
+          break;
+        case 'arts':
+          scores.fineArts.score += 12;
+          scores.design.score += 10;
+          scores.music.score += 10;
+          scores.theater.score += 8;
+          break;
+        case 'physical':
+          scores.physical.score += 15;
+          scores.healthScience.score += 10;
+          scores.medicine.score += 5;
+          scores.education.score += 4;
+          break;
       }
+    });
+  }
       
       // 흥미있는 과목에 따른 추가 점수
       if (answers.favoriteSubjects) {
@@ -1064,7 +1243,6 @@ calculateScoresByPersonality: function(answers, scores) {
     },
     
 
-// 점수를 기준으로 정렬하여 추천 결과 반환
 sortRecommendationsByScore: function(scores) {
   if (!scores || typeof scores !== 'object') {
     console.warn("정렬할 점수 객체가 유효하지 않습니다.");
@@ -1105,7 +1283,7 @@ sortRecommendationsByScore: function(scores) {
   }
   
   return scoreArray;
-}
+},
     
     // 대학 추천 기능
     recommendUniversities: function(answers, majorRecommendations) {
