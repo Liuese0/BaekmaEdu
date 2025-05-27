@@ -444,6 +444,7 @@ const EducationalGuidanceTool = () => {
     
     // 진로 적합성 점수 초기화
 // 진로 적합성 점수 초기화
+// 진로 적합성 점수 초기화
 initializeScores: function() {
   return {
     // 인문계열
@@ -460,7 +461,6 @@ initializeScores: function() {
     psychology: { score: 0, category: '사회계열', name: '심리학', description: '인간의 행동과 정신 과정을 과학적으로 연구하는 학문' },
     education: { score: 0, category: '사회계열', name: '교육학', description: '교육의 이론과 방법, 제도를 연구하는 학문' },
     law: { score: 0, category: '사회계열', name: '법학', description: '법률과 제도, 법적 원리를 연구하는 학문' },
-    journalism: { score: 0, category: '사회계열', name: '신문방송학', description: '언론과 미디어의 역할과 영향을 연구하는 학문' },
     
     // 자연계열
     math: { score: 0, category: '자연계열', name: '수학/통계학', description: '수, 구조, 공간, 변화 등의 추상적 개념과 법칙을 연구하는 학문' },
@@ -468,7 +468,6 @@ initializeScores: function() {
     chemistry: { score: 0, category: '자연계열', name: '화학', description: '물질의 구조, 성질, 변화를 연구하는 학문' },
     biology: { score: 0, category: '자연계열', name: '생물학', description: '생명체의 구조, 기능, 진화, 분포를 연구하는 학문' },
     earthScience: { score: 0, category: '자연계열', name: '지구과학', description: '지구와 우주의 구조, 역사, 현상을 연구하는 학문' },
-    statistics: { score: 0, category: '자연계열', name: '통계학', description: '데이터 수집, 분석, 해석을 통한 정보 추출 방법을 연구하는 학문' },
     
     // 공학계열
     computerScience: { score: 0, category: '공학계열', name: '컴퓨터공학', description: '컴퓨터 시스템과 소프트웨어 개발 원리를 연구하는 학문' },
@@ -484,25 +483,18 @@ initializeScores: function() {
     pharmacy: { score: 0, category: '의학계열', name: '약학', description: '약물의 개발, 제조, 사용을 연구하는 학문' },
     nursing: { score: 0, category: '의학계열', name: '간호학', description: '환자 돌봄과 건강 관리를 연구하는 학문' },
     healthScience: { score: 0, category: '의학계열', name: '보건학', description: '개인과 지역사회의 건강 증진을 연구하는 학문' },
-    veterinary: { score: 0, category: '의학계열', name: '수의학', description: '동물의 질병 예방과 치료를 연구하는 학문' },
     
     // 농림/생활계열
     agriculture: { score: 0, category: '농림/생활계열', name: '농업/산림학', description: '식물 재배, 산림 관리, 환경 보전을 연구하는 학문' },
     foodScience: { score: 0, category: '농림/생활계열', name: '식품영양학', description: '식품의 특성과 영양, 식생활을 연구하는 학문' },
-    environmental: { score: 0, category: '농림/생활계열', name: '환경학', description: '환경 보전과 관리를 연구하는 학문' },
+    veterinary: { score: 0, category: '농림/생활계열', name: '수의학', description: '동물의 질병 예방과 치료를 연구하는 학문' },
     
     // 예체능계열
     fineArts: { score: 0, category: '예체능계열', name: '미술/조형예술', description: '시각 예술과 조형 활동을 연구하고 창작하는 학문' },
     design: { score: 0, category: '예체능계열', name: '디자인', description: '실용적이고 미적인 제품과 환경을 설계하는 학문' },
     music: { score: 0, category: '예체능계열', name: '음악', description: '음악 이론, 연주, 작곡을 연구하고 실천하는 학문' },
     theater: { score: 0, category: '예체능계열', name: '연극/영화', description: '공연 예술과 영상 미디어를 연구하고 창작하는 학문' },
-    physical: { score: 0, category: '예체능계열', name: '체육/스포츠과학', description: '신체 활동과 스포츠를 과학적으로 연구하는 학문' },
-    
-    // 기타
-    international: { score: 0, category: '사회계열', name: '국제학', description: '국제 관계와 글로벌 이슈를 연구하는 학문' },
-    tourism: { score: 0, category: '사회계열', name: '관광학', description: '관광 현상과 산업을 연구하는 학문' },
-    finance: { score: 0, category: '사회계열', name: '금융학', description: '금융 시장과 투자를 연구하는 학문' },
-    socialWork: { score: 0, category: '사회계열', name: '사회복지학', description: '사회복지 제도와 실천을 연구하는 학문' }
+    physical: { score: 0, category: '예체능계열', name: '체육/스포츠과학', description: '신체 활동과 스포츠를 과학적으로 연구하는 학문' }
   };
 },
     
