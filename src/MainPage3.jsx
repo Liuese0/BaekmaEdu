@@ -755,142 +755,143 @@ if (answers.subjectRanking) {
       
       // 선택 과목에 따른 점수 조정
 // 선택 과목에 따른 점수 조정
-  if (answers.selectedSubjects) {
-    const subjects = Array.isArray(answers.selectedSubjects) ? answers.selectedSubjects : [answers.selectedSubjects];
-    
-    subjects.forEach(subject => {
-      switch(subject) {
-        case 'literature':
-          if (scores.koreanLiterature) scores.koreanLiterature.score += 12;
-          if (scores.education) scores.education.score += 5;
-          break;
-        case 'math1':
-          if (scores.math) scores.math.score += 8;
-          if (scores.economics) scores.economics.score += 5;
-          if (scores.business) scores.business.score += 4;
-          break;
-        case 'math2':
-          if (scores.math) scores.math.score += 10;
-          if (scores.physics) scores.physics.score += 5;
-          if (scores.computerScience) scores.computerScience.score += 6;
-          break;
-        case 'calculus':
-          if (scores.math) scores.math.score += 12;
-          if (scores.physics) scores.physics.score += 10;
-          if (scores.electrical) scores.electrical.score += 8;
-          if (scores.mechanical) scores.mechanical.score += 8;
-          break;
-        case 'statistics':
-          if (scores.math) scores.math.score += 8;
-          if (scores.economics) scores.economics.score += 8;
-          if (scores.business) scores.business.score += 8;
-          if (scores.psychology) scores.psychology.score += 6;
-          if (scores.sociology) scores.sociology.score += 6;
-          break;
-        case 'geometry':
-          if (scores.math) scores.math.score += 10;
-          if (scores.civil) scores.civil.score += 8;
-          if (scores.fineArts) scores.fineArts.score += 4;
-          break;
-        case 'physics1':
-          if (scores.physics) scores.physics.score += 10;
-          if (scores.mechanical) scores.mechanical.score += 8;
-          if (scores.electrical) scores.electrical.score += 8;
-          break;
-        case 'physics2':
-          if (scores.physics) scores.physics.score += 12;
-          if (scores.mechanical) scores.mechanical.score += 10;
-          if (scores.electrical) scores.electrical.score += 10;
-          break;
-        case 'chemistry1':
-          if (scores.chemistry) scores.chemistry.score += 10;
-          if (scores.chemicalEng) scores.chemicalEng.score += 8;
-          if (scores.pharmacy) scores.pharmacy.score += 8;
-          if (scores.biology) scores.biology.score += 5;
-          break;
-        case 'chemistry2':
-          if (scores.chemistry) scores.chemistry.score += 12;
-          if (scores.chemicalEng) scores.chemicalEng.score += 10;
-          if (scores.pharmacy) scores.pharmacy.score += 10;
-          if (scores.medicine) scores.medicine.score += 6;
-          break;
-        case 'biology1':
-          if (scores.biology) scores.biology.score += 10;
-          if (scores.medicine) scores.medicine.score += 8;
-          if (scores.nursing) scores.nursing.score += 8;
-          if (scores.agriculture) scores.agriculture.score += 6;
-          break;
-        case 'biology2':
-          if (scores.biology) scores.biology.score += 12;
-          if (scores.medicine) scores.medicine.score += 10;
-          if (scores.nursing) scores.nursing.score += 10;
-          if (scores.pharmacy) scores.pharmacy.score += 8;
-          if (scores.healthScience) scores.healthScience.score += 8;
-          break;
-        case 'earthScience1':
-          if (scores.earthScience) scores.earthScience.score += 10;
-          if (scores.agriculture) scores.agriculture.score += 6;
-          break;
-        case 'earthScience2':
-          if (scores.earthScience) scores.earthScience.score += 12;
-          break;
-        case 'koreanHistory':
-          if (scores.history) scores.history.score += 10;
-          if (scores.koreanLiterature) scores.koreanLiterature.score += 6;
-          if (scores.education) scores.education.score += 5;
-          if (scores.politics) scores.politics.score += 4;
-          break;
-        case 'worldHistory':
-          if (scores.history) scores.history.score += 10;
-          if (scores.politics) scores.politics.score += 8;
-          if (scores.sociology) scores.sociology.score += 5;
-          break;
-        case 'ethics':
-          if (scores.philosophy) scores.philosophy.score += 10;
-          if (scores.sociology) scores.sociology.score += 8;
-          if (scores.psychology) scores.psychology.score += 6;
-          if (scores.education) scores.education.score += 6;
-          break;
-        case 'politics':
-          if (scores.politics) scores.politics.score += 12;
-          if (scores.law) scores.law.score += 10;
-          if (scores.sociology) scores.sociology.score += 8;
-          if (scores.economics) scores.economics.score += 6;
-          break;
-        case 'economics':
-          if (scores.economics) scores.economics.score += 12;
-          if (scores.business) scores.business.score += 10;
-          if (scores.politics) scores.politics.score += 6;
-          break;
-        case 'society':
-          if (scores.sociology) scores.sociology.score += 12;
-          if (scores.psychology) scores.psychology.score += 8;
-          if (scores.politics) scores.politics.score += 6;
-          if (scores.education) scores.education.score += 5;
-          break;
-        case 'programming':
-          if (scores.computerScience) scores.computerScience.score += 15;
-          if (scores.electrical) scores.electrical.score += 10;
-          if (scores.business) scores.business.score += 5;
-          break;
-        case 'secondLanguage':
-          if (scores.foreignLanguage) scores.foreignLanguage.score += 12;
-          break;
-        case 'arts':
-          if (scores.fineArts) scores.fineArts.score += 12;
-          if (scores.design) scores.design.score += 10;
-          if (scores.music) scores.music.score += 10;
-          if (scores.theater) scores.theater.score += 8;
-          break;
-        case 'physical':
-          if (scores.physical) scores.physical.score += 15;
-          if (scores.healthScience) scores.healthScience.score += 10;
-          if (scores.medicine) scores.medicine.score += 5;
-          if (scores.education) scores.education.score += 4;
-          break;
-      }
-    });
-  }
+  // 선택 과목에 따른 점수 조정
+if (answers.selectedSubjects) {
+  const subjects = Array.isArray(answers.selectedSubjects) ? answers.selectedSubjects : [answers.selectedSubjects];
+  
+  subjects.forEach(subject => {
+    switch(subject) {
+      case 'literature':
+        scores.koreanLiterature.score += 12;
+        scores.education.score += 5;
+        break;
+      case 'math1':
+        scores.math.score += 8;
+        scores.economics.score += 5;
+        scores.business.score += 4;
+        break;
+      case 'math2':
+        scores.math.score += 10;
+        scores.physics.score += 5;
+        scores.computerScience.score += 6;
+        break;
+      case 'calculus':
+        scores.math.score += 12;
+        scores.physics.score += 10;
+        scores.electrical.score += 8;
+        scores.mechanical.score += 8;
+        break;
+      case 'statistics':
+        scores.math.score += 8;
+        scores.economics.score += 8;
+        scores.business.score += 8;
+        scores.psychology.score += 6;
+        scores.sociology.score += 6;
+        break;
+      case 'geometry':
+        scores.math.score += 10;
+        scores.civil.score += 8;
+        scores.fineArts.score += 4;
+        break;
+      case 'physics1':
+        scores.physics.score += 10;
+        scores.mechanical.score += 8;
+        scores.electrical.score += 8;
+        break;
+      case 'physics2':
+        scores.physics.score += 12;
+        scores.mechanical.score += 10;
+        scores.electrical.score += 10;
+        break;
+      case 'chemistry1':
+        scores.chemistry.score += 10;
+        scores.chemicalEng.score += 8;
+        scores.pharmacy.score += 8;
+        scores.biology.score += 5;
+        break;
+      case 'chemistry2':
+        scores.chemistry.score += 12;
+        scores.chemicalEng.score += 10;
+        scores.pharmacy.score += 10;
+        scores.medicine.score += 6;
+        break;
+      case 'biology1':
+        scores.biology.score += 10;
+        scores.medicine.score += 8;
+        scores.nursing.score += 8;
+        scores.agriculture.score += 6;
+        break;
+      case 'biology2':
+        scores.biology.score += 12;
+        scores.medicine.score += 10;
+        scores.nursing.score += 10;
+        scores.pharmacy.score += 8;
+        scores.healthScience.score += 8;
+        break;
+      case 'earthScience1':
+        scores.earthScience.score += 10;
+        scores.agriculture.score += 6;
+        break;
+      case 'earthScience2':
+        scores.earthScience.score += 12;
+        break;
+      case 'koreanHistory':
+        scores.history.score += 10;
+        scores.koreanLiterature.score += 6;
+        scores.education.score += 5;
+        scores.politics.score += 4;
+        break;
+      case 'worldHistory':
+        scores.history.score += 10;
+        scores.politics.score += 8;
+        scores.sociology.score += 5;
+        break;
+      case 'ethics':
+        scores.philosophy.score += 10;
+        scores.sociology.score += 8;
+        scores.psychology.score += 6;
+        scores.education.score += 6;
+        break;
+      case 'politics':
+        scores.politics.score += 12;
+        scores.law.score += 10;
+        scores.sociology.score += 8;
+        scores.economics.score += 6;
+        break;
+      case 'economics':
+        scores.economics.score += 12;
+        scores.business.score += 10;
+        scores.politics.score += 6;
+        break;
+      case 'society':
+        scores.sociology.score += 12;
+        scores.psychology.score += 8;
+        scores.politics.score += 6;
+        scores.education.score += 5;
+        break;
+      case 'programming':
+        scores.computerScience.score += 15;
+        scores.electrical.score += 10;
+        scores.business.score += 5;
+        break;
+      case 'secondLanguage':
+        scores.foreignLanguage.score += 12;
+        break;
+      case 'arts':
+        scores.fineArts.score += 12;
+        scores.design.score += 10;
+        scores.music.score += 10;
+        scores.theater.score += 8;
+        break;
+      case 'physical':
+        scores.physical.score += 15;
+        scores.healthScience.score += 10;
+        scores.medicine.score += 5;
+        scores.education.score += 4;
+        break;
+    }
+  });
+}
       
       // 흥미있는 과목에 따른 추가 점수
       // 흥미있는 과목에 따른 추가 점수
