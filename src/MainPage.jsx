@@ -1977,6 +1977,7 @@ const renderLoading = () => {
 };
 
 // 질문 응답 여부 확인 함수
+// 질문 응답 여부 확인 함수
 const isQuestionAnswered = (question) => {
   // 선택 항목인 경우 건너뛰기 가능
   if (question.optional) return true;
@@ -1998,14 +1999,15 @@ const isQuestionAnswered = (question) => {
 // 옵션 선택 처리 함수
 const handleOptionSelect = (question, value) => {
   if (question.multiSelect) {
-    const currentSelections = Array.isArray(answers[question.id]) ? [...answers[question.id]] : [];
+    const currentSelections = answers[question.id] ? [...answers[question.id]] : [];
     
     // 이미 선택된 옵션인 경우 제거
     if (currentSelections.includes(value)) {
-      setAnswers({
-        ...answers,
-        [question.id]: currentSelections.filter(item => item !== value)
-      });
+      const newSelections = currentSelections.filter(item => item !== value);
+      setAnswers(prevAnswers => ({
+        ...prevAnswers,
+        [question.id]: newSelections
+      }));
     } 
     // 새로 선택하는 경우
     else {
@@ -2013,23 +2015,23 @@ const handleOptionSelect = (question, value) => {
       if (question.maxSelect && currentSelections.length >= question.maxSelect) {
         // 최대 개수 초과시 가장 먼저 선택한 항목 제거
         const newSelections = [...currentSelections.slice(1), value];
-        setAnswers({
-          ...answers,
+        setAnswers(prevAnswers => ({
+          ...prevAnswers,
           [question.id]: newSelections
-        });
+        }));
       } else {
-        setAnswers({
-          ...answers,
+        setAnswers(prevAnswers => ({
+          ...prevAnswers,
           [question.id]: [...currentSelections, value]
-        });
+        }));
       }
     }
   } else {
     // 단일 선택 질문
-    setAnswers({
-      ...answers,
+    setAnswers(prevAnswers => ({
+      ...prevAnswers,
       [question.id]: value
-    });
+    }));
   }
 };
 
@@ -2060,94 +2062,89 @@ const handleNext = () => {
 
 // 결과 계산 처리
 // 결과 계산 처리
-const calculateResults = async () => {
+const calculateResults = () => {
   setLoading(true);
 
-  try {
-    // 약간의 딜레이를 위해 Promise 사용
-    await new Promise(resolve => setTimeout(resolve, 600));
-
-    // 각 알고리즘 함수 호출 시 안전한 반환값 확보
-    let recommendedMajors = [];
+  // setTimeout을 사용하여 비동기 처리를 단순화
+  setTimeout(() => {
     try {
-      recommendedMajors = await Promise.resolve(
-        careerRecommendationAlgorithm.recommendMajors(answers)
-      ) || [];
-    } catch (majorError) {
-      console.error("전공 추천 계산 중 오류:", majorError);
-      recommendedMajors = [
-        {
-          name: "기본 추천 전공",
-          category: "일반",
-          description: "세부 계산 중 오류가 발생했습니다.",
-          score: 100,
-          id: "default"
-        }
-      ];
-    }
-
-    let recommendedUniversities = [];
-    try {
-      recommendedUniversities = await Promise.resolve(
-        careerRecommendationAlgorithm.recommendUniversities(answers, recommendedMajors)
-      ) || ["서울대학교", "연세대학교", "고려대학교", "성균관대학교", "한양대학교"];
-    } catch (univError) {
-      console.error("대학 추천 계산 중 오류:", univError);
-      recommendedUniversities = ["대학 추천 생성 중 오류가 발생했습니다"];
-    }
-
-    let careerRoadmap = {};
-    try {
-      careerRoadmap = await Promise.resolve(
-        careerRecommendationAlgorithm.generateCareerRoadmap(answers, recommendedMajors)
-      ) || {
-        currentYear: { title: "현재", tasks: ["기본 진로 계획"] },
-        nextYear: { title: "다음 학년", tasks: ["기본 진로 계획"] },
-        graduation: { title: "졸업 전", tasks: ["기본 진로 계획"] },
-        university: { title: "대학 진학 후", tasks: ["기본 진로 계획"] },
-        career: { title: "진로 계획", tasks: ["기본 진로 계획"] }
-      };
-    } catch (roadmapError) {
-      console.error("진로 로드맵 계산 중 오류:", roadmapError);
-      careerRoadmap = {
-        currentYear: { title: "현재", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
-        nextYear: { title: "다음 학년", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
-        graduation: { title: "졸업 전", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
-        university: { title: "대학 진학 후", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
-        career: { title: "진로 계획", tasks: ["로드맵 생성 중 오류가 발생했습니다"] }
-      };
-    }
-
-    // 최종 결과 설정
-    setResult({
-      recommendedMajors,
-      recommendedUniversities,
-      careerRoadmap
-    });
-  } catch (generalError) {
-    console.error("전체 결과 계산 중 오류 발생:", generalError);
-    setResult({
-      recommendedMajors: [
-        {
-          name: "학과 추천 중 오류가 발생했습니다",
-          category: "오류",
-          description: "다시 시도해주세요",
-          score: 100,
-          id: "error"
-        }
-      ],
-      recommendedUniversities: ["대학 추천 중 오류가 발생했습니다"],
-      careerRoadmap: {
-        currentYear: { title: "현재", tasks: ["다시 시도해주세요"] },
-        nextYear: { title: "다음 학년", tasks: ["다시 시도해주세요"] },
-        graduation: { title: "졸업 전", tasks: ["다시 시도해주세요"] },
-        university: { title: "대학 진학 후", tasks: ["다시 시도해주세요"] },
-        career: { title: "진로 계획", tasks: ["다시 시도해주세요"] }
+      // 동기적으로 함수 호출
+      let recommendedMajors = [];
+      try {
+        recommendedMajors = careerRecommendationAlgorithm.recommendMajors(answers) || [];
+      } catch (majorError) {
+        console.error("전공 추천 계산 중 오류:", majorError);
+        recommendedMajors = [
+          {
+            name: "기본 추천 전공",
+            category: "일반",
+            description: "세부 계산 중 오류가 발생했습니다.",
+            score: 100,
+            id: "default"
+          }
+        ];
       }
-    });
-  } finally {
-    setLoading(false);
-  }
+
+      let recommendedUniversities = [];
+      try {
+        recommendedUniversities = careerRecommendationAlgorithm.recommendUniversities(answers, recommendedMajors) || 
+          ["서울대학교", "연세대학교", "고려대학교", "성균관대학교", "한양대학교"];
+      } catch (univError) {
+        console.error("대학 추천 계산 중 오류:", univError);
+        recommendedUniversities = ["대학 추천 생성 중 오류가 발생했습니다"];
+      }
+
+      let careerRoadmap = {};
+      try {
+        careerRoadmap = careerRecommendationAlgorithm.generateCareerRoadmap(answers, recommendedMajors) || {
+          currentYear: { title: "현재", tasks: ["기본 진로 계획"] },
+          nextYear: { title: "다음 학년", tasks: ["기본 진로 계획"] },
+          graduation: { title: "졸업 전", tasks: ["기본 진로 계획"] },
+          university: { title: "대학 진학 후", tasks: ["기본 진로 계획"] },
+          career: { title: "진로 계획", tasks: ["기본 진로 계획"] }
+        };
+      } catch (roadmapError) {
+        console.error("진로 로드맵 계산 중 오류:", roadmapError);
+        careerRoadmap = {
+          currentYear: { title: "현재", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
+          nextYear: { title: "다음 학년", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
+          graduation: { title: "졸업 전", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
+          university: { title: "대학 진학 후", tasks: ["로드맵 생성 중 오류가 발생했습니다"] },
+          career: { title: "진로 계획", tasks: ["로드맵 생성 중 오류가 발생했습니다"] }
+        };
+      }
+
+      // 최종 결과 설정
+      setResult({
+        recommendedMajors,
+        recommendedUniversities,
+        careerRoadmap
+      });
+    } catch (generalError) {
+      console.error("전체 결과 계산 중 오류 발생:", generalError);
+      setResult({
+        recommendedMajors: [
+          {
+            name: "학과 추천 중 오류가 발생했습니다",
+            category: "오류",
+            description: "다시 시도해주세요",
+            score: 100,
+            id: "error"
+          }
+        ],
+        recommendedUniversities: ["대학 추천 중 오류가 발생했습니다"],
+        careerRoadmap: {
+          currentYear: { title: "현재", tasks: ["다시 시도해주세요"] },
+          nextYear: { title: "다음 학년", tasks: ["다시 시도해주세요"] },
+          graduation: { title: "졸업 전", tasks: ["다시 시도해주세요"] },
+          university: { title: "대학 진학 후", tasks: ["다시 시도해주세요"] },
+          career: { title: "진로 계획", tasks: ["다시 시도해주세요"] }
+        }
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, 1000);
 };
 
 
