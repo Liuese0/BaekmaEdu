@@ -652,105 +652,106 @@ initializeScores: function() {
       }
       
       // 과목별 등급에 따른 특정 전공 점수 조정
-  if (answers.subjectRanking) {
-    const subjects = Array.isArray(answers.subjectRanking) ? answers.subjectRanking : [answers.subjectRanking];
-    
-    subjects.forEach(subject => {
-      if (subject === 'koreanHigh') {
-        scores.koreanLiterature.score += 15;
-        scores.foreignLanguage.score += 8;
-        scores.education.score += 8;
-        scores.law.score += 8;
-        scores.journalism.score += 10;
-        scores.philosophy.score += 8;
-        scores.history.score += 6;
-      } else if (subject === 'koreanMid') {
-        scores.koreanLiterature.score += 8;
-        scores.foreignLanguage.score += 4;
-        scores.education.score += 4;
-        scores.journalism.score += 5;
-      } else if (subject === 'koreanLow') {
-        scores.koreanLiterature.score -= 5;
-        scores.journalism.score -= 3;
-      } else if (subject === 'mathHigh') {
-        scores.math.score += 15;
-        scores.physics.score += 10;
-        scores.computerScience.score += 10;
-        scores.electrical.score += 10;
-        scores.economics.score += 8;
-        scores.mechanical.score += 8;
-        scores.statistics.score += 12;
-        scores.finance.score += 10;
-        scores.civil.score += 6;
-      } else if (subject === 'mathMid') {
-        scores.math.score += 8;
-        scores.physics.score += 5;
-        scores.computerScience.score += 5;
-        scores.economics.score += 4;
-      } else if (subject === 'mathLow') {
-        scores.math.score -= 5;
-        scores.physics.score -= 3;
-        scores.computerScience.score -= 2;
-        scores.mechanical.score -= 3;
-      } else if (subject === 'englishHigh') {
-        scores.foreignLanguage.score += 15;
-        scores.business.score += 8;
-        scores.theater.score += 5;
-        scores.politics.score += 6;
-        scores.international.score += 10;
-        scores.tourism.score += 8;
-        scores.journalism.score += 5;
-      } else if (subject === 'englishMid') {
-        scores.foreignLanguage.score += 8;
-        scores.business.score += 4;
-        scores.tourism.score += 4;
-      } else if (subject === 'englishLow') {
-        scores.foreignLanguage.score -= 5;
-        scores.international.score -= 5;
-      } else if (subject === 'scienceHigh') {
-        scores.physics.score += 10;
-        scores.chemistry.score += 10;
-        scores.biology.score += 10;
-        scores.medicine.score += 8;
-        scores.engineering.score += 8;
-        scores.pharmacy.score += 8;
-        scores.healthScience.score += 8;
-        scores.earthScience.score += 10;
-        scores.agriculture.score += 6;
-        scores.environmental.score += 6;
-      } else if (subject === 'scienceMid') {
-        scores.physics.score += 5;
-        scores.chemistry.score += 5;
-        scores.biology.score += 5;
-        scores.medicine.score += 4;
-        scores.engineering.score += 4;
-      } else if (subject === 'scienceLow') {
-        scores.physics.score -= 5;
-        scores.chemistry.score -= 5;
-        scores.medicine.score -= 5;
-        scores.engineering.score -= 3;
-      } else if (subject === 'socialHigh') {
-        scores.history.score += 10;
-        scores.politics.score += 10;
-        scores.economics.score += 10;
-        scores.sociology.score += 10;
-        scores.law.score += 8;
-        scores.education.score += 6;
-        scores.psychology.score += 8;
-        scores.journalism.score += 6;
-        scores.philosophy.score += 8;
-      } else if (subject === 'socialMid') {
-        scores.history.score += 5;
-        scores.politics.score += 5;
-        scores.economics.score += 5;
-        scores.sociology.score += 5;
-      } else if (subject === 'socialLow') {
-        scores.history.score -= 3;
-        scores.politics.score -= 3;
-        scores.law.score -= 5;
-      }
-    });
-  }
+// 과목별 등급에 따른 특정 전공 점수 조정
+if (answers.subjectRanking) {
+  const subjects = Array.isArray(answers.subjectRanking) ? answers.subjectRanking : [answers.subjectRanking];
+  
+  subjects.forEach(subject => {
+    if (subject === 'koreanHigh') {
+      scores.koreanLiterature.score += 15;
+      scores.foreignLanguage.score += 8;
+      scores.education.score += 8;
+      scores.law.score += 8;
+      if (scores.journalism) scores.journalism.score += 10;
+      scores.philosophy.score += 8;
+      scores.history.score += 6;
+    } else if (subject === 'koreanMid') {
+      scores.koreanLiterature.score += 8;
+      scores.foreignLanguage.score += 4;
+      scores.education.score += 4;
+      if (scores.journalism) scores.journalism.score += 5;
+    } else if (subject === 'koreanLow') {
+      scores.koreanLiterature.score -= 5;
+      if (scores.journalism) scores.journalism.score -= 3;
+    } else if (subject === 'mathHigh') {
+      scores.math.score += 15;
+      scores.physics.score += 10;
+      scores.computerScience.score += 10;
+      scores.electrical.score += 10;
+      scores.economics.score += 8;
+      scores.mechanical.score += 8;
+      if (scores.statistics) scores.statistics.score += 12;
+      if (scores.finance) scores.finance.score += 10;
+      scores.civil.score += 6;
+    } else if (subject === 'mathMid') {
+      scores.math.score += 8;
+      scores.physics.score += 5;
+      scores.computerScience.score += 5;
+      scores.economics.score += 4;
+    } else if (subject === 'mathLow') {
+      scores.math.score -= 5;
+      scores.physics.score -= 3;
+      scores.computerScience.score -= 2;
+      scores.mechanical.score -= 3;
+    } else if (subject === 'englishHigh') {
+      scores.foreignLanguage.score += 15;
+      scores.business.score += 8;
+      scores.theater.score += 5;
+      scores.politics.score += 6;
+      if (scores.international) scores.international.score += 10;
+      if (scores.tourism) scores.tourism.score += 8;
+      if (scores.journalism) scores.journalism.score += 5;
+    } else if (subject === 'englishMid') {
+      scores.foreignLanguage.score += 8;
+      scores.business.score += 4;
+      if (scores.tourism) scores.tourism.score += 4;
+    } else if (subject === 'englishLow') {
+      scores.foreignLanguage.score -= 5;
+      if (scores.international) scores.international.score -= 5;
+    } else if (subject === 'scienceHigh') {
+      scores.physics.score += 10;
+      scores.chemistry.score += 10;
+      scores.biology.score += 10;
+      scores.medicine.score += 8;
+      if (scores.engineering) scores.engineering.score += 8;
+      scores.pharmacy.score += 8;
+      scores.healthScience.score += 8;
+      scores.earthScience.score += 10;
+      scores.agriculture.score += 6;
+      if (scores.environmental) scores.environmental.score += 6;
+    } else if (subject === 'scienceMid') {
+      scores.physics.score += 5;
+      scores.chemistry.score += 5;
+      scores.biology.score += 5;
+      scores.medicine.score += 4;
+      if (scores.engineering) scores.engineering.score += 4;
+    } else if (subject === 'scienceLow') {
+      scores.physics.score -= 5;
+      scores.chemistry.score -= 5;
+      scores.medicine.score -= 5;
+      if (scores.engineering) scores.engineering.score -= 3;
+    } else if (subject === 'socialHigh') {
+      scores.history.score += 10;
+      scores.politics.score += 10;
+      scores.economics.score += 10;
+      scores.sociology.score += 10;
+      scores.law.score += 8;
+      scores.education.score += 6;
+      scores.psychology.score += 8;
+      if (scores.journalism) scores.journalism.score += 6;
+      scores.philosophy.score += 8;
+    } else if (subject === 'socialMid') {
+      scores.history.score += 5;
+      scores.politics.score += 5;
+      scores.economics.score += 5;
+      scores.sociology.score += 5;
+    } else if (subject === 'socialLow') {
+      scores.history.score -= 3;
+      scores.politics.score -= 3;
+      scores.law.score -= 5;
+    }
+  });
+}
       
       // 선택 과목에 따른 점수 조정
 // 선택 과목에 따른 점수 조정
@@ -1043,63 +1044,64 @@ initializeScores: function() {
     // 활동 경험에 따른 점수 계산
     calculateScoresByActivity: function(answers, scores) {
       // 동아리 활동에 따른 점수 조정
-      if (answers.clubs) {
-        const clubs = Array.isArray(answers.clubs) ? answers.clubs : [answers.clubs];
-        
-        clubs.forEach(club => {
-          switch(club) {
-            case 'mathClub':
-              scores.math.score += 8;
-              scores.physics.score += 4;
-              scores.computerScience.score += 4;
-              break;
-            case 'scienceClub':
-              scores.physics.score += 6;
-              scores.chemistry.score += 6;
-              scores.biology.score += 6;
-              scores.medicine.score += 4;
-              break;
-            case 'readingClub':
-              scores.koreanLiterature.score += 8;
-              scores.philosophy.score += 6;
-              scores.history.score += 6;
-              scores.education.score += 4;
-              break;
-            case 'programmingClub':
-              scores.computerScience.score += 10;
-              scores.electrical.score += 6;
-              scores.math.score += 4;
-              break;
-            case 'debateClub':
-              scores.politics.score += 8;
-              scores.law.score += 8;
-              scores.sociology.score += 6;
-              break;
-            case 'newspaperClub':
-              scores.koreanLiterature.score += 6;
-              scores.sociology.score += 6;
-              scores.theater.score += 4;
-              break;
-            case 'environmentClub':
-              scores.earthScience.score += 8;
-              scores.agriculture.score += 8;
-              scores.biology.score += 6;
-              break;
-            case 'musicClub':
-              scores.music.score += 10;
-              scores.fineArts.score += 4;
-              break;
-            case 'artClub':
-              scores.fineArts.score += 10;
-              scores.design.score += 8;
-              break;
-            case 'businessClub':
-              scores.business.score += 10;
-              scores.economics.score += 8;
-              break;
-          }
-        });
-      }
+// 동아리 활동에 따른 점수 조정
+if (answers.clubs) {
+  const clubs = Array.isArray(answers.clubs) ? answers.clubs : [answers.clubs];
+  
+  clubs.forEach(club => {
+    switch(club) {
+      case 'mathClub':
+        scores.math.score += 8;
+        scores.physics.score += 4;
+        scores.computerScience.score += 4;
+        break;
+      case 'scienceClub':
+        scores.physics.score += 6;
+        scores.chemistry.score += 6;
+        scores.biology.score += 6;
+        scores.medicine.score += 4;
+        break;
+      case 'readingClub':
+        scores.koreanLiterature.score += 8;
+        scores.philosophy.score += 6;
+        scores.history.score += 6;
+        scores.education.score += 4;
+        break;
+      case 'programmingClub':
+        scores.computerScience.score += 10;
+        scores.electrical.score += 6;
+        scores.math.score += 4;
+        break;
+      case 'debateClub':
+        scores.politics.score += 8;
+        scores.law.score += 8;
+        scores.sociology.score += 6;
+        break;
+      case 'newspaperClub':
+        scores.koreanLiterature.score += 6;
+        scores.sociology.score += 6;
+        scores.theater.score += 4;
+        break;
+      case 'environmentClub':
+        scores.earthScience.score += 8;
+        scores.agriculture.score += 8;
+        scores.biology.score += 6;
+        break;
+      case 'musicClub':
+        scores.music.score += 10;
+        scores.fineArts.score += 4;
+        break;
+      case 'artClub':
+        scores.fineArts.score += 10;
+        scores.design.score += 8;
+        break;
+      case 'businessClub':
+        scores.business.score += 10;
+        scores.economics.score += 8;
+        break;
+    }
+  });
+}
       
       // 특별 활동에 따른 점수 조정
       if (answers.specialActivities) {
